@@ -1,0 +1,63 @@
+﻿@page "/contactdetails"
+
+@inject IContactService ContactService
+
+<h3>Contact Details</h3>
+
+<EditForm Model="@contact">
+
+    <table class="table">
+        <tr>
+
+            <td>First Name:</td>
+            <td><input type="text" @bind="contact.FirstName" />  </td>
+
+        </tr>
+
+        <tr>
+
+            <td>Last Name:</td>
+            <td><input type="text" @bind="contact.LastName" />  </td>
+
+        </tr>
+        <tr>
+
+            <td>Phone:</td>
+            <td><input type="text" @bind="contact.Phone" />  </td>
+
+        </tr>
+        <tr>
+
+            <td>Address:</td>
+            <td><input type="text" @bind="contact.Address" />  </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center" @onclick="Save"></td>
+            <input type="submit" value="Save" />
+            <input type="button" value="Cancel" @onclick="Cancel"/>
+        </tr>
+       
+
+    </table>
+
+
+</EditForm>
+
+
+@code {
+    Contact contact = new Contact();
+
+
+    protected async Task Save()
+    {
+        await ContactService.Save(contact);
+    }
+
+    protected async Task Cancel()
+    {
+
+    }
+
+
+}
