@@ -89,10 +89,10 @@ namespace FirstBlazor_App.Server.Controllers
 
         // DELETE api/Contact/5
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             await _contactRepository.Delete(id);
-
+            return NoContent();
         }
     }
 }

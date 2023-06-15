@@ -3,6 +3,7 @@
 
 @inject IContactService ContactService
 
+
 <h3>ContactList</h3>
 
 <p>This page a list of all contacts.</p>
@@ -53,14 +54,15 @@
 
 
 @code {
-    public List<Contact> contacts;
-    public string Message{ get; set; }
+    public List<Contact>? contacts;
+    public string? Message{ get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
             contacts = (List<Contact>)await ContactService.GetAll();
+            
         }
         catch (Exception e)
         {

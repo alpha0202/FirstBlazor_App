@@ -1,6 +1,7 @@
 ﻿@page "/contactdetails"
 
 @inject IContactService ContactService
+@inject NavigationManager NavigationManager
 
 <h3>Contact Details</h3>
 
@@ -33,8 +34,8 @@
 
         </tr>
         <tr>
-            <td colspan="2" style="text-align:center" @onclick="Save"></td>
-            <input type="submit" value="Save" />
+            <td colspan="2" style="text-align:center" ></td>
+            <input type="submit" value="Save" @onclick="Save" />
             <input type="button" value="Cancel" @onclick="Cancel"/>
         </tr>
        
@@ -52,11 +53,12 @@
     protected async Task Save()
     {
         await ContactService.Save(contact);
+        NavigationManager.NavigateTo("/");
     }
 
-    protected async Task Cancel()
+    protected  void Cancel()
     {
-
+        NavigationManager.NavigateTo("/");
     }
 
 
