@@ -1,11 +1,11 @@
-﻿@page "/contactdetails"
-@page "/contactdetails/{id:int}"
+﻿@page "/contactdelete/{id:int}"
 
 
 @inject IContactService ContactService
 @inject NavigationManager NavigationManager
 
-<h3>Contact Details</h3>
+<h3>Contact Delete</h3>
+<p style="color:darkred;text-align:center">Are you sure you want to delete this contact?</p>
 
 <EditForm Model="@contact">
 
@@ -36,11 +36,11 @@
 
         </tr>
         <tr>
-            <td colspan="2" style="text-align:center" ></td>
-            <input type="submit" value="Save" @onclick="Save" />
-            <input type="button" value="Cancel" @onclick="Cancel"/>
+            <td colspan="2" style="text-align:center"></td>
+            <input type="submit" value="Delete" @onclick="Delete" />
+            <input type="button" value="Cancel" @onclick="Cancel" />
         </tr>
-       
+
 
     </table>
 
@@ -55,20 +55,20 @@
     Contact contact = new Contact();
 
 
-    protected async Task Save()
+    protected async Task Delete()
     {
-        await ContactService.Save(contact);
+        await ContactService.Delete(id);
         NavigationManager.NavigateTo("/");
     }
 
-    protected  void Cancel()
+    protected void Cancel()
     {
         NavigationManager.NavigateTo("/");
     }
 
     protected async override Task OnInitializedAsync()
     {
-        if (id > 0)
+      
             contact = await ContactService.GetDetails(id);
 
     }
